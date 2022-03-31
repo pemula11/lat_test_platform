@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/UI/TombolMenu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/UI/TombolKeluar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UI/UI.tres" type="Theme" id=3]
+[ext_resource path="res://src/UI/startbutton.gd" type="Script" id=5]
+[ext_resource path="res://asset/GUI/png/UI/20.png" type="Texture" id=9]
+[ext_resource path="res://asset/background_set/B1011-2.png" type="Texture" id=10]
+
+[node name="MainScreen" type="Node2D"]
+position = Vector2( -0.036, 0 )
+
+[node name="Node2D" type="Control" parent="."]
+
+[node name="B1013-3" type="TextureRect" parent="Node2D"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 512.0
+margin_bottom = 256.0
+texture = ExtResource( 10 )
+stretch_mode = 2
+
+[node name="PopUp2" type="Control" parent="Node2D"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 2.036
+margin_right = 322.036
+margin_bottom = 240.0
+
+[node name="Menu" type="CenterContainer" parent="Node2D/PopUp2"]
+anchor_left = 0.21875
+anchor_top = 0.183333
+anchor_right = 0.624658
+anchor_bottom = 2.5331
+margin_right = 483.11
+margin_bottom = 86.056
+rect_scale = Vector2( 0.211893, 0.236837 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": true
+}
+
+[node name="pause_overlay" type="TextureRect" parent="Node2D/PopUp2/Menu"]
+margin_right = 613.0
+margin_bottom = 650.0
+texture = ExtResource( 9 )
+stretch_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Node2D/PopUp2/Menu"]
+margin_left = 134.0
+margin_top = 121.0
+margin_right = 478.0
+margin_bottom = 529.0
+
+[node name="Title" type="Label" parent="Node2D/PopUp2/Menu/VBoxContainer"]
+margin_right = 344.0
+margin_bottom = 99.0
+theme = ExtResource( 3 )
+text = "PAUSED"
+align = 1
+
+[node name="TombolStart" parent="Node2D/PopUp2/Menu/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 103.0
+margin_right = 344.74
+margin_bottom = 202.754
+text = "MULAI GAME"
+script = ExtResource( 5 )
+next_scene_path = "res://src/level/LevelTemplate.tscn"
+
+[node name="TombolMenu2" parent="Node2D/PopUp2/Menu/VBoxContainer" instance=ExtResource( 1 )]
+margin_right = 344.0
+text = "OPTION"
+
+[node name="TombolKeluar" parent="Node2D/PopUp2/Menu/VBoxContainer" instance=ExtResource( 2 )]
+margin_right = 344.0
+
+[connection signal="button_up" from="Node2D/PopUp2/Menu/VBoxContainer/TombolStart" to="Node2D/PopUp2/Menu/VBoxContainer/TombolStart" method="_on_TombolStart_button_up"]

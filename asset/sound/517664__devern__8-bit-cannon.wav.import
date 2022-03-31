@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/517664__devern__8-bit-cannon.wav-8558f2f4fd89dda1323b3beb6cc9c7dd.sample"
+
+[deps]
+
+source_file="res://asset/sound/517664__devern__8-bit-cannon.wav"
+dest_files=[ "res://.import/517664__devern__8-bit-cannon.wav-8558f2f4fd89dda1323b3beb6cc9c7dd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

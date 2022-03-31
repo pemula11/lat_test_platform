@@ -1,0 +1,92 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://asset/GUI/png/button/9.png" type="Texture" id=1]
+[ext_resource path="res://src/UI/levelbtn_normal.tres" type="StyleBox" id=2]
+[ext_resource path="res://src/UI/base_button.gd" type="Script" id=3]
+[ext_resource path="res://asset/GUI/png/button/12.png" type="Texture" id=4]
+[ext_resource path="res://asset/ThaleahFat.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://asset/GUI/png/UI/33.png" type="Texture" id=6]
+[ext_resource path="res://asset/GUI/png/UI/31.png" type="Texture" id=7]
+
+[sub_resource type="DynamicFont" id=3]
+size = 17
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=4]
+default_font = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 17
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=6]
+default_font = SubResource( 5 )
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 176, 178 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 176, 178 )
+
+[node name="baseButton" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 30, 30 )
+theme = SubResource( 4 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 0.977139
+anchor_bottom = 1.42198
+margin_right = 160.316
+margin_bottom = -199.276
+rect_scale = Vector2( 0.661067, 2.40335 )
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="TextureRect" type="Sprite" parent="TextureRect"]
+position = Vector2( 121.017, 116.504 )
+scale = Vector2( 0.879663, 0.179295 )
+texture = ExtResource( 7 )
+
+[node name="TextureRect2" type="Sprite" parent="TextureRect"]
+position = Vector2( 242.033, 116.504 )
+scale = Vector2( 0.879663, 0.179295 )
+texture = ExtResource( 7 )
+
+[node name="TextureRect3" type="Sprite" parent="TextureRect"]
+position = Vector2( 363.05, 116.504 )
+scale = Vector2( 0.879663, 0.179295 )
+texture = ExtResource( 7 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect"]
+margin_left = 24.2033
+margin_top = 96.5318
+margin_right = 64.2033
+margin_bottom = 136.532
+rect_scale = Vector2( 10.843, 0.975376 )
+
+[node name="baseButton" type="Button" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 30, 30 )
+theme = SubResource( 6 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = ExtResource( 2 )
+custom_styles/focus = ExtResource( 2 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+clip_text = true
+script = ExtResource( 3 )
+
+[node name="Button" type="Button" parent="."]
+visible = false
+margin_right = 12.0
+margin_bottom = 23.0
+
+[connection signal="pressed" from="baseButton" to="baseButton" method="_on_baseButton_pressed"]

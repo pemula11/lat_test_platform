@@ -1,0 +1,211 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://src/UI/TombolKeluar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/UI/TombolMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UI/UI.tres" type="Theme" id=3]
+[ext_resource path="res://asset/sound/Ambient Music.wav" type="AudioStream" id=4]
+[ext_resource path="res://asset/GUI/png/UI/4.png" type="Texture" id=9]
+[ext_resource path="res://asset/GUI/png/button/61.png" type="Texture" id=10]
+[ext_resource path="res://asset/background_set/B1012.png" type="Texture" id=11]
+[ext_resource path="res://src/UI/baseButton.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/UI/Level_list.gd" type="Script" id=13]
+[ext_resource path="res://asset/GUI/png/UI/2.png" type="Texture" id=14]
+[ext_resource path="res://asset/GUI/png/button/15.png" type="Texture" id=15]
+[ext_resource path="res://asset/GUI/png/button/19.png" type="Texture" id=16]
+[ext_resource path="res://asset/GUI/png/UI/3.png" type="Texture" id=17]
+[ext_resource path="res://asset/GUI/png/button/39.png" type="Texture" id=18]
+[ext_resource path="res://src/UI/menuScreen.gd" type="Script" id=19]
+
+[node name="Node2D" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 19 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 11 )
+expand = true
+
+[node name="Title2" type="Label" parent="."]
+margin_left = 2.0
+margin_top = -5.0
+margin_right = 490.0
+margin_bottom = 94.0
+rect_scale = Vector2( 0.657184, 0.775709 )
+theme = ExtResource( 3 )
+text = "ADVEnture"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 67.0
+margin_right = 29.0
+margin_bottom = 235.0
+rect_scale = Vector2( 0.44, 0.419355 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+margin_right = 344.0
+margin_bottom = 99.0
+theme = ExtResource( 3 )
+text = "-------"
+align = 1
+
+[node name="TombolStart" parent="VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 103.0
+margin_right = 344.74
+margin_bottom = 202.754
+text = "MULAI GAME"
+
+[node name="TombolMenu2" parent="VBoxContainer" instance=ExtResource( 2 )]
+margin_right = 344.0
+text = "OPTION"
+
+[node name="TombolKeluar" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_right = 344.0
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 306.0
+margin_top = 93.0
+margin_right = 700.0
+margin_bottom = 93.0
+rect_rotation = 90.0
+rect_scale = Vector2( 0.2, 0.4 )
+texture = ExtResource( 9 )
+
+[node name="Button" type="Button" parent="TextureRect2"]
+margin_left = 57.7778
+margin_top = 5.625
+margin_right = 245.778
+margin_bottom = 190.625
+rect_scale = Vector2( 0.9, 0.8 )
+icon = ExtResource( 10 )
+
+[node name="HUD" type="Control" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -100.0
+margin_right = 150.0
+margin_bottom = 100.0
+script = ExtResource( 13 )
+base_button = ExtResource( 12 )
+total_level = 15
+grid = NodePath("divider/Center_button/button_grid")
+
+[node name="TextureRect" type="TextureRect" parent="HUD"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -100.0
+margin_right = 150.0
+margin_bottom = 100.0
+texture = ExtResource( 17 )
+expand = true
+
+[node name="TextureRect2" type="TextureRect" parent="HUD"]
+margin_left = -10.0
+margin_top = -4.0
+margin_right = 705.0
+margin_bottom = 139.0
+rect_scale = Vector2( 0.45465, 0.477644 )
+texture = ExtResource( 14 )
+
+[node name="Title" type="Label" parent="HUD/TextureRect2"]
+margin_left = 203.953
+margin_top = 28.8486
+margin_right = 809.953
+margin_bottom = 127.849
+rect_scale = Vector2( 0.517825, 0.610484 )
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.32549, 0.219608, 0.219608, 1 )
+text = "Choose Level:"
+align = 1
+valign = 1
+
+[node name="divider" type="VBoxContainer" parent="HUD"]
+anchor_top = 0.519
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = -36.8
+margin_right = 6.0
+margin_bottom = -36.8
+
+[node name="Center_button" type="HBoxContainer" parent="HUD/divider"]
+margin_right = 300.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="HUD/divider/Center_button"]
+margin_right = 146.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="button_grid" type="GridContainer" parent="HUD/divider/Center_button"]
+margin_left = 150.0
+margin_right = 150.0
+margin_bottom = 96.0
+
+[node name="Control2" type="Control" parent="HUD/divider/Center_button"]
+margin_left = 154.0
+margin_right = 300.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect3" type="TextureRect" parent="HUD"]
+anchor_left = 0.153333
+anchor_top = 0.82
+anchor_right = 2.53333
+anchor_bottom = 1.635
+rect_scale = Vector2( 0.28576, 0.28576 )
+texture = ExtResource( 9 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBoxContainer" type="HBoxContainer" parent="HUD/TextureRect3"]
+margin_left = 90.0
+margin_top = 10.0
+margin_right = 740.0
+margin_bottom = 195.0
+rect_scale = Vector2( 0.928947, 0.743158 )
+
+[node name="Button" type="Button" parent="HUD/TextureRect3/VBoxContainer"]
+margin_right = 189.0
+margin_bottom = 185.0
+icon = ExtResource( 16 )
+
+[node name="Button2" type="Button" parent="HUD/TextureRect3/VBoxContainer"]
+margin_left = 193.0
+margin_right = 381.0
+margin_bottom = 185.0
+icon = ExtResource( 15 )
+
+[node name="Button3" type="Button" parent="HUD/TextureRect3/VBoxContainer"]
+margin_left = 385.0
+margin_right = 574.0
+margin_bottom = 185.0
+icon = ExtResource( 18 )
+
+[node name="bgmusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[connection signal="pressed" from="VBoxContainer/TombolStart" to="." method="_on_TombolStart_pressed"]
+[connection signal="button_up" from="HUD/TextureRect3/VBoxContainer/Button" to="." method="_on_Button_button_up"]

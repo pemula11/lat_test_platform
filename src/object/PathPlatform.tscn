@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/level/LevelTemplate.tres" type="TileSet" id=1]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 19.958, -19.1212, 0, 0, 0, 0, 279.411, -12.7475, 0, 0, 0, 0, 19.958, -19.1212 )
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24, 10 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "gerak"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[node name="PathPlatform" type="Path2D"]
+position = Vector2( -8, 16 )
+scale = Vector2( 0.801685, 1.25515 )
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2( 83.6175, -17.5573 )
+rotation = 0.76399
+offset = 63.7505
+rotate = false
+
+[node name="platform_bergerak" type="RigidBody2D" parent="PathFollow2D"]
+position = Vector2( -4.40941, -4.60236 )
+rotation = -0.76399
+collision_layer = 8
+mode = 3
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TileMap" type="TileMap" parent="PathFollow2D/platform_bergerak"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+collision_use_parent = true
+format = 1
+tile_data = PoolIntArray( 65534, 3, 0, 65535, 0, 65550, 0, 0, 65551, 1, 4, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/platform_bergerak"]
+position = Vector2( 0, 8 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "gerak"
+anims/gerak = SubResource( 4 )

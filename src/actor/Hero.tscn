@@ -1,0 +1,205 @@
+[gd_scene load_steps=57 format=2]
+
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/idle07.png" type="Texture" id=1]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/idle05.png" type="Texture" id=2]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/idle04.png" type="Texture" id=3]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/idle06.png" type="Texture" id=4]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/idle08.png" type="Texture" id=5]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/idle03.png" type="Texture" id=6]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/idle02.png" type="Texture" id=7]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/idle01.png" type="Texture" id=8]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/idle09.png" type="Texture" id=9]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/run08.png" type="Texture" id=10]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/jump_landing.png" type="Texture" id=11]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/jump_start01.png" type="Texture" id=12]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/run01.png" type="Texture" id=13]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/run04.png" type="Texture" id=14]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/jump_start02.png" type="Texture" id=15]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/run02.png" type="Texture" id=16]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/run05.png" type="Texture" id=17]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/run06.png" type="Texture" id=18]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/run07.png" type="Texture" id=19]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/jump_mid01.png" type="Texture" id=20]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/jump_mid03.png" type="Texture" id=21]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/run03.png" type="Texture" id=22]
+[ext_resource path="res://asset/Gino Character/PNG/Idle, run, jump/jump_mid02.png" type="Texture" id=23]
+[ext_resource path="res://src/actor/Hero.gd" type="Script" id=24]
+[ext_resource path="res://asset/Gino Character/PNG/Attacks/AttackA02.png" type="Texture" id=25]
+[ext_resource path="res://asset/Gino Character/PNG/Attacks/AttackA04.png" type="Texture" id=26]
+[ext_resource path="res://asset/Gino Character/PNG/Attacks/AttackA05.png" type="Texture" id=27]
+[ext_resource path="res://asset/Gino Character/PNG/Attacks/AttackA06.png" type="Texture" id=28]
+[ext_resource path="res://asset/Gino Character/PNG/Attacks/AttackA03.png" type="Texture" id=29]
+[ext_resource path="res://asset/Gino Character/PNG/Attacks/AttackA07.png" type="Texture" id=30]
+[ext_resource path="res://asset/Gino Character/PNG/Attacks/AttackA01.png" type="Texture" id=31]
+[ext_resource path="res://asset/Gino Character/PNG/Hit, death/death05.png" type="Texture" id=32]
+[ext_resource path="res://asset/Gino Character/PNG/Hit, death/death03.png" type="Texture" id=33]
+[ext_resource path="res://asset/Gino Character/PNG/Hit, death/hit03.png" type="Texture" id=34]
+[ext_resource path="res://asset/Gino Character/PNG/Hit, death/death01.png" type="Texture" id=35]
+[ext_resource path="res://asset/Gino Character/PNG/Hit, death/death02.png" type="Texture" id=36]
+[ext_resource path="res://asset/Gino Character/PNG/Hit, death/death04.png" type="Texture" id=37]
+[ext_resource path="res://asset/Gino Character/PNG/Hit, death/hit02.png" type="Texture" id=38]
+[ext_resource path="res://asset/Gino Character/PNG/Hit, death/hit01.png" type="Texture" id=39]
+[ext_resource path="res://asset/Gino Character/PNG/Attack in jump/attack_in_jump04.png" type="Texture" id=40]
+[ext_resource path="res://asset/Gino Character/PNG/Attack in jump/attack_in_jump06.png" type="Texture" id=41]
+[ext_resource path="res://asset/Gino Character/PNG/Attack in jump/attack_in_jump03.png" type="Texture" id=42]
+[ext_resource path="res://asset/Gino Character/PNG/Attack in jump/attack_in_jump05.png" type="Texture" id=43]
+[ext_resource path="res://asset/Gino Character/PNG/Attack in jump/attack_in_jump07.png" type="Texture" id=44]
+[ext_resource path="res://asset/Gino Character/PNG/Attack in jump/attack_in_jump02.png" type="Texture" id=45]
+[ext_resource path="res://asset/Gino Character/PNG/Attack in jump/attack_in_jump01.png" type="Texture" id=46]
+[ext_resource path="res://asset/sound/350923__cabled-mess__hurt-c-01(1).wav" type="AudioStream" id=47]
+[ext_resource path="res://asset/sound/420668__sypherzent__basic-melee-swing-miss-whoosh.wav" type="AudioStream" id=48]
+[ext_resource path="res://asset/sound/350986__cabled-mess__lose-c-01.wav" type="AudioStream" id=49]
+[ext_resource path="res://asset/sound/146726__leszek-szary__jumping.wav" type="AudioStream" id=50]
+
+[sub_resource type="CapsuleShape2D" id=1]
+height = 10.0
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "idle",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 39 ), ExtResource( 38 ), ExtResource( 34 ), ExtResource( 39 ), ExtResource( 38 ), ExtResource( 34 ) ],
+"loop": false,
+"name": "terluka",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 35 ), ExtResource( 36 ), ExtResource( 33 ), ExtResource( 37 ), ExtResource( 32 ) ],
+"loop": false,
+"name": "mati",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 31 ), ExtResource( 25 ), ExtResource( 29 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 30 ) ],
+"loop": false,
+"name": "serang",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 15 ), ExtResource( 20 ), ExtResource( 23 ), ExtResource( 21 ) ],
+"loop": false,
+"name": "lompat",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 16 ), ExtResource( 22 ), ExtResource( 14 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "jalan",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": false,
+"name": "jatuh",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 46 ), ExtResource( 45 ), ExtResource( 42 ), ExtResource( 40 ), ExtResource( 43 ), ExtResource( 41 ), ExtResource( 44 ) ],
+"loop": false,
+"name": "attack_jump",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=4]
+resource_name = "animserang"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "animterluka"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 10, 15 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 10, 15.5 )
+
+[node name="Hero" type="KinematicBody2D" groups=["player"]]
+collision_mask = 24
+script = ExtResource( 24 )
+speed = Vector2( 100, 225 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1, 1 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 2, -44 )
+frames = SubResource( 2 )
+animation = "terluka"
+frame = 5
+speed_scale = 2.0
+playing = true
+centered = false
+offset = Vector2( -23, 0 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_smoothed = true
+smoothing_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/animserang = SubResource( 4 )
+anims/animterluka = SubResource( 3 )
+
+[node name="attackCollision" type="Area2D" parent="." groups=["Sword", "sword"]]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attackCollision"]
+position = Vector2( 22, -1 )
+shape = SubResource( 5 )
+disabled = true
+
+[node name="AreaTerluka" type="Area2D" parent="." groups=["player_hitten"]]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaTerluka"]
+position = Vector2( 0, 0.5 )
+shape = SubResource( 6 )
+
+[node name="sound" type="Node2D" parent="."]
+
+[node name="serang" type="AudioStreamPlayer" parent="sound"]
+stream = ExtResource( 48 )
+volume_db = -0.15
+pitch_scale = 1.58
+
+[node name="hitten" type="AudioStreamPlayer" parent="sound"]
+stream = ExtResource( 47 )
+
+[node name="dead" type="AudioStreamPlayer" parent="sound"]
+stream = ExtResource( 49 )
+
+[node name="jump" type="AudioStreamPlayer" parent="sound"]
+stream = ExtResource( 50 )
+volume_db = -10.755
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/level/LevelTemplate.tres" type="TileSet" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24, 10 )
+
+[sub_resource type="Animation" id=4]
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.7, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 136, 128 ), Vector2( 200, 128 ), Vector2( 136, 128 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "gerak"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.6, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 100, 0 ), Vector2( 0, 0 ) ]
+}
+
+[node name="platform_bergerak" type="RigidBody2D"]
+position = Vector2( 136, 128 )
+mode = 3
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 65534, 3, 0, 65535, 0, 65550, 0, 0, 65551, 1, 4, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 8 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "gerak"
+anims/RESET = SubResource( 4 )
+anims/gerak = SubResource( 3 )

@@ -1,0 +1,134 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://asset/trap/Cannon/Cannon Idle/1.png" type="Texture" id=1]
+[ext_resource path="res://asset/trap/Cannon/Cannon Fire/5.png" type="Texture" id=2]
+[ext_resource path="res://asset/trap/Cannon/Cannon Fire/6.png" type="Texture" id=3]
+[ext_resource path="res://src/actor/meriam.gd" type="Script" id=4]
+[ext_resource path="res://asset/trap/Cannon/Cannon Fire/1.png" type="Texture" id=5]
+[ext_resource path="res://asset/trap/Cannon/Cannon Fire/4.png" type="Texture" id=6]
+[ext_resource path="res://asset/trap/Cannon/Cannon Fire/2.png" type="Texture" id=7]
+[ext_resource path="res://asset/trap/Cannon/Cannon Fire/3.png" type="Texture" id=8]
+[ext_resource path="res://asset/sound/517664__devern__8-bit-cannon.wav" type="AudioStream" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 7 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "diam"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "nembak"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 2 ), ExtResource( 3 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "tembak"
+} ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "diam"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "nembak"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=9]
+states/diam/node = SubResource( 5 )
+states/diam/position = Vector2( 271, 88.3333 )
+states/nembak/node = SubResource( 6 )
+states/nembak/position = Vector2( 469.667, 111 )
+transitions = [ "diam", "nembak", SubResource( 7 ), "nembak", "diam", SubResource( 8 ) ]
+start_node = "diam"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+
+[node name="meriam" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 9
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -2, -1 )
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CollisionShape2D")
+anims/RESET = SubResource( 2 )
+anims/diam = SubResource( 3 )
+anims/nembak = SubResource( 4 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 9 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 10 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -100, 0 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( -21, -4 )
+
+[node name="boom" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+volume_db = -4.952
+pitch_scale = 1.91

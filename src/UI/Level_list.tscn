@@ -1,0 +1,125 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/UI/Level_list.gd" type="Script" id=1]
+[ext_resource path="res://src/UI/baseButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/UI/UI.tres" type="Theme" id=3]
+[ext_resource path="res://asset/GUI/png/UI/2.png" type="Texture" id=4]
+[ext_resource path="res://asset/GUI/png/UI/3.png" type="Texture" id=5]
+[ext_resource path="res://asset/GUI/png/button/11.png" type="Texture" id=6]
+[ext_resource path="res://asset/GUI/png/UI/4.png" type="Texture" id=7]
+[ext_resource path="res://asset/GUI/png/button/19.png" type="Texture" id=8]
+
+[node name="HUD" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -100.0
+margin_right = 150.0
+margin_bottom = 100.0
+script = ExtResource( 1 )
+base_button = ExtResource( 2 )
+total_level = 15
+grid = NodePath("divider/Center_button/button_grid")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -100.0
+margin_right = 150.0
+margin_bottom = 100.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+margin_left = -10.0
+margin_top = -4.0
+margin_right = 705.0
+margin_bottom = 139.0
+rect_scale = Vector2( 0.45465, 0.477644 )
+texture = ExtResource( 4 )
+
+[node name="Title" type="Label" parent="TextureRect2"]
+margin_left = 203.953
+margin_top = 28.8486
+margin_right = 809.953
+margin_bottom = 127.849
+rect_scale = Vector2( 0.517825, 0.610484 )
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.32549, 0.219608, 0.219608, 1 )
+text = "Choose Level:"
+align = 1
+valign = 1
+
+[node name="divider" type="VBoxContainer" parent="."]
+anchor_top = 0.519
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_top = -36.8
+margin_right = 6.0
+margin_bottom = -36.8
+
+[node name="Center_button" type="HBoxContainer" parent="divider"]
+margin_right = 300.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="divider/Center_button"]
+margin_right = 146.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="button_grid" type="GridContainer" parent="divider/Center_button"]
+margin_left = 150.0
+margin_right = 150.0
+margin_bottom = 96.0
+
+[node name="Control2" type="Control" parent="divider/Center_button"]
+margin_left = 154.0
+margin_right = 300.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+anchor_left = 0.153333
+anchor_top = 0.82
+anchor_right = 2.53333
+anchor_bottom = 1.635
+rect_scale = Vector2( 0.28576, 0.28576 )
+texture = ExtResource( 7 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBoxContainer" type="HBoxContainer" parent="TextureRect3"]
+margin_left = 90.0
+margin_top = 10.0
+margin_right = 740.0
+margin_bottom = 195.0
+rect_scale = Vector2( 0.928947, 0.743158 )
+
+[node name="Button2" type="Button" parent="TextureRect3/VBoxContainer"]
+margin_right = 188.0
+margin_bottom = 185.0
+icon = ExtResource( 6 )
+
+[node name="Button" type="Button" parent="TextureRect3/VBoxContainer"]
+margin_left = 192.0
+margin_right = 381.0
+margin_bottom = 185.0
+icon = ExtResource( 8 )
+
+[node name="Button3" type="Button" parent="TextureRect3/VBoxContainer"]
+margin_left = 385.0
+margin_right = 573.0
+margin_bottom = 185.0
+icon = ExtResource( 6 )

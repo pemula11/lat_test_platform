@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://asset/Life Bars/Big Bars/1.png" type="Texture" id=1]
+[ext_resource path="res://asset/Life Bars/Colors/1.png" type="Texture" id=2]
+[ext_resource path="res://asset/Life Bars/Big Bars/4.png" type="Texture" id=3]
+[ext_resource path="res://src/UI/GUI.gd" type="Script" id=4]
+[ext_resource path="res://src/UI/TombolMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/UI/TombolKeluar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/UI/Tombolstart.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/UI/UI.tres" type="Theme" id=8]
+[ext_resource path="res://src/UI/Pause.gd" type="Script" id=10]
+[ext_resource path="res://asset/GUI/png/UI/20.png" type="Texture" id=13]
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource( 4 )
+
+[node name="HealthBar" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HealthBar"]
+margin_left = 16.0
+margin_top = 10.0
+margin_right = 80.0
+margin_bottom = 50.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TextureRect" type="TextureRect" parent="HealthBar/HBoxContainer"]
+margin_right = 32.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+
+[node name="TextureRect2" type="TextureRect" parent="HealthBar/HBoxContainer"]
+margin_left = 32.0
+margin_right = 64.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+
+[node name="TextureProgress" type="TextureProgress" parent="HealthBar"]
+margin_left = 32.0
+margin_top = 24.0
+margin_right = 78.0
+margin_bottom = 26.0
+value = 100.0
+texture_progress = ExtResource( 2 )
+nine_patch_stretch = true
+
+[node name="PopUp" type="Control" parent="."]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -120.0
+margin_right = 160.0
+margin_bottom = 120.0
+script = ExtResource( 10 )
+
+[node name="Menu" type="ColorRect" parent="PopUp"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.156863, 0.14902, 0.14902, 0.364706 )
+
+[node name="MenuCenter" type="CenterContainer" parent="PopUp/Menu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -68.0
+margin_top = -76.0
+margin_right = 545.0
+margin_bottom = 574.0
+rect_scale = Vector2( 0.211893, 0.236837 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="TextureRect" type="TextureRect" parent="PopUp/Menu/MenuCenter"]
+margin_right = 613.0
+margin_bottom = 650.0
+texture = ExtResource( 13 )
+stretch_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopUp/Menu/MenuCenter"]
+margin_left = 142.0
+margin_top = 121.0
+margin_right = 471.0
+margin_bottom = 529.0
+
+[node name="Title" type="Label" parent="PopUp/Menu/MenuCenter/VBoxContainer"]
+margin_right = 329.0
+margin_bottom = 99.0
+theme = ExtResource( 8 )
+text = "PAUSED"
+align = 1
+
+[node name="TombolUlangi" parent="PopUp/Menu/MenuCenter/VBoxContainer" instance=ExtResource( 7 )]
+
+[node name="TombolMenu" parent="PopUp/Menu/MenuCenter/VBoxContainer" instance=ExtResource( 5 )]
+next_scene_path = "res://src/UI/menuScreen.tscn"
+
+[node name="TombolKeluar" parent="PopUp/Menu/MenuCenter/VBoxContainer" instance=ExtResource( 6 )]

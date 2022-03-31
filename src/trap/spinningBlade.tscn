@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://asset/trap/trap/Suriken.png" type="Texture" id=1]
+[ext_resource path="res://src/trap/spinningBlade.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "spin"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5, 6, 7, 0 ]
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -8, 0, 0, 0, 0, 0, 96, 0, 0, 0, 0, 0, 168, 72, 0, 0, 0, 0, 176, 80, 0, 0, 0, 0, 216, 80, 0, 0, 0, 0, 288, 16, 0, 0, 0, 0, 328, 16, 0, 0, 0, 0, 352, 48, 0, 0, 0, 0, 352, 96, 0, 0, 0, 0, 408, 96, 0, 0, 0, 0, 352, 96, 0, 0, 0, 0, 352, 48, 0, 0, 0, 0, 328, 16, 0, 0, 0, 0, 288, 16, 0, 0, 0, 0, 216, 80, 0, 0, 0, 0, 176, 80, 0, 0, 0, 0, 96, 0, 0, 0, 0, 0, -8, 0 )
+}
+
+[sub_resource type="CircleShape2D" id=4]
+
+[node name="spinningBlade" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Path2D/PathFollow2D/Sprite")
+playback_speed = 3.0
+anims/RESET = SubResource( 1 )
+anims/spin = SubResource( 2 )
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource( 3 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( -8, 0 )
+
+[node name="Sprite" type="Sprite" parent="Path2D/PathFollow2D"]
+texture = ExtResource( 1 )
+hframes = 8
+
+[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D/Sprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Sprite/Area2D"]
+scale = Vector2( 1.7053, 1.75136 )
+shape = SubResource( 4 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( -8, 0 )
+scale = Vector2( 12.8429, 14.1754 )
+process_parent = true
+physics_process_parent = true
+
+[connection signal="body_entered" from="Path2D/PathFollow2D/Sprite/Area2D" to="." method="_on_Area2D_body_entered"]
